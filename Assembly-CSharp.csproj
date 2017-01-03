@@ -45,8 +45,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scrips\Boom.cs" />
+     <Compile Include="Assets\Scrips\Comment.cs" />
+     <Compile Include="Assets\Scrips\DestoryByTime.cs" />
+     <Compile Include="Assets\Scrips\Fly.cs" />
      <Compile Include="Assets\Scrips\GameController.cs" />
      <Compile Include="Assets\Scrips\PlayerSpawner.cs" />
+     <Compile Include="Assets\Scrips\Tap.cs" />
+     <Compile Include="Assets\Scrips\WallTrigger.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
