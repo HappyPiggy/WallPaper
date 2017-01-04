@@ -8,6 +8,8 @@ public class PlayerSpawner : MonoBehaviour {
 
     public void PlayerSpawn() {
 
+       // GameController._instance.playerSpawner.SetActive(false);
+
         if (playerList == null || playerList.Length == 0)
             return;
 

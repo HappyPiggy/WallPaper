@@ -9,6 +9,10 @@ public class GameController : MonoBehaviour {
     public Text scoreText;
     public GameObject[] hearts;
 
+    public Image damageImage;
+    public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
+    public float flashSpeed = 5f;  
+
     private BoxCollider2D upWall;
     private BoxCollider2D leftWall;
     private BoxCollider2D rightWall;
@@ -17,8 +21,12 @@ public class GameController : MonoBehaviour {
     private BoxCollider2D basket;
     private int currentHealth;
     private int score;
+    private bool damaged;
+
     [HideInInspector]
     public bool gameOver;
+    [HideInInspector]
+    public GameObject playerSpawner;
 
 
     public static GameController _instance;
@@ -26,6 +34,8 @@ public class GameController : MonoBehaviour {
     void Awake()
     {
         _instance = this;
+        playerSpawner = GameObject.Find("PlayerSpawner").gameObject;
+        playerSpawner.SetActive(true);
     }
 
     void Start()
@@ -35,12 +45,32 @@ public class GameController : MonoBehaviour {
 
     }
 
+    void Update()
+    {
+        // If the player has just been damaged...
+        if (damaged)
+        {
+            // ... set the colour of the damageImage to the flash colour.
+            damageImage.color = flashColour;
+        }
+        // Otherwise...
+        else
+        {
+            // ... transition the colour back to clear.
+            damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
+        }
+
+        // Reset the damaged flag.
+        damaged = false;
+    }
+
 
     void InitGame() {
 
         currentHealth = maxHealth;
         score = 0;
         gameOver = false;
+        damaged = false;
         UpdateScore();
 
         for (int i = 1; i < hearts.Length; i++) {
@@ -50,6 +80,8 @@ public class GameController : MonoBehaviour {
     }
 
     public void GetDamage() {
+
+        damaged = true;
         currentHealth -= 1;
            
 
@@ -57,6 +89,7 @@ public class GameController : MonoBehaviour {
             case 0:
                 //游戏结束
                 hearts[0].SetActive(false);
+                playerSpawner.SetActive(true);
                 gameOver = true;
                 break;
             case 1:
@@ -96,7 +129,7 @@ public class GameController : MonoBehaviour {
         upWall.size = new Vector2(width, 1);
 
         Vector3 downWallPosition = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width / 2, 0));
-        downWall.transform.position = downWallPosition + new Vector3(0, 0.5f, 0);
+        downWall.transform.position = downWallPosition;
         downWall.size = new Vector2(width, 1);
 
 

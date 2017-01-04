@@ -6,7 +6,8 @@ public class Tap : MonoBehaviour {
     void OnMouseUp()
     {
         TapBall();
-        GameController._instance.AddScore(5);   
+        if(!GameController._instance.gameOver)
+             GameController._instance.AddScore(5);   
 
     }
 
