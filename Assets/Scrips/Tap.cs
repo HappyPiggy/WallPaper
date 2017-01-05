@@ -6,8 +6,14 @@ public class Tap : MonoBehaviour {
     void OnMouseUp()
     {
         TapBall();
-        if(!GameController._instance.gameOver)
-             GameController._instance.AddScore(5);   
+        if (!GameController._instance.gameOver) {
+
+            //增加分数，生成别的球
+            GameController._instance.AddScore(10);
+
+            GameController._instance.SpawnOtherBalls();
+        }
+             
 
     }
 

@@ -41,7 +41,7 @@ public class GameController : MonoBehaviour {
     void Start()
     {
         ResetWall();
-        InitGame();
+       // InitGame();
 
     }
 
@@ -65,15 +65,21 @@ public class GameController : MonoBehaviour {
     }
 
 
-    void InitGame() {
+    public void SpawnOtherBalls() {
+
+        PlayerSpawner._instance.Spawn();
+    }
+
+   public void InitGame() {
 
         currentHealth = maxHealth;
         score = 0;
         gameOver = false;
         damaged = false;
         UpdateScore();
+        PlayerSpawner._instance.DestroyAllObj();
 
-        for (int i = 1; i < hearts.Length; i++) {
+        for (int i = 0; i < hearts.Length; i++) {
             hearts[i].SetActive(true);
         }
     
@@ -111,6 +117,9 @@ public class GameController : MonoBehaviour {
         scoreText.text = "Score:"+score;
     
     }
+
+
+
 
 
     void ResetWall()
