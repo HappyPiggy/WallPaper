@@ -12,6 +12,8 @@ public class Tap : MonoBehaviour {
             GameController._instance.AddScore(10);
 
             GameController._instance.SpawnOtherBalls();
+
+            PlaySound._instance.PlayTap();
         }
              
 
@@ -30,5 +32,16 @@ public class Tap : MonoBehaviour {
         velocity.y = yVelocity;
 
         gameObject.GetComponent<Rigidbody2D>().velocity = velocity;
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.collider.tag == "Wall")
+        {
+            PlaySound._instance.PlayBump();
+        }
+
+
     }
 }

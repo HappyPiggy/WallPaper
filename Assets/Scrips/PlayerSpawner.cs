@@ -8,9 +8,14 @@ public class PlayerSpawner : MonoBehaviour {
     public GameObject[] playerList;
     public Transform startPos;
 
+    //private AudioSource clickSource;
+
 
     private List<GameObject> allObj;
-    
+    private static int count=0;
+
+    [HideInInspector]
+    public bool isfull = false;
 
     public static PlayerSpawner _instance;
 
@@ -22,18 +27,23 @@ public class PlayerSpawner : MonoBehaviour {
     void Start() { 
     
         allObj=new List<GameObject>();
+      //  clickSource = GetComponent<AudioSource>();
     }
 
 
     public void OnStartClick() {
-
+       // print(clickSource);
+        PlaySound._instance.PlayerClick();
+        
         GameController._instance.playerSpawner.SetActive(false);
         GameController._instance.InitGame();
 
         //生成主角球
         GameObject mainPlayer = Instantiate(mainBall, startPos.position, startPos.rotation) as GameObject;
         allObj.Add(mainPlayer);
-     
+
+        isfull = false;
+        
     }
 
 
@@ -49,8 +59,8 @@ public class PlayerSpawner : MonoBehaviour {
 
         Quaternion rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
 
-        int index = Random.Range(0, playerList.Length);
-        //print(index);
+      //  int index = Random.Range(0, playerList.Length);
+        int index = count;
 
         if (Random.Range(0, 2) == 1)
             spawnPos1 = spawnPos2;
@@ -66,6 +76,12 @@ public class PlayerSpawner : MonoBehaviour {
         
         allObj.Add(playerClone);
 
+        if (allObj.Count > playerList.Length)
+            isfull = true;
+
+        count++;
+        if (count == playerList.Length)
+            count = 0;
     }
 
     public void DestroyAllObj() {

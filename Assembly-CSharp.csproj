@@ -50,6 +50,7 @@
      <Compile Include="Assets\Scrips\DestoryByTime.cs" />
      <Compile Include="Assets\Scrips\Fly.cs" />
      <Compile Include="Assets\Scrips\GameController.cs" />
+     <Compile Include="Assets\Scrips\PlaySound.cs" />
      <Compile Include="Assets\Scrips\PlayerSpawner.cs" />
      <Compile Include="Assets\Scrips\Tap.cs" />
      <Compile Include="Assets\Scrips\WallTrigger.cs" />

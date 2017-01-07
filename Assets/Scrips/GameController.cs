@@ -78,6 +78,7 @@ public class GameController : MonoBehaviour {
         damaged = false;
         UpdateScore();
         PlayerSpawner._instance.DestroyAllObj();
+        PlaySound._instance.PlayBg();
 
         for (int i = 0; i < hearts.Length; i++) {
             hearts[i].SetActive(true);
@@ -94,6 +95,8 @@ public class GameController : MonoBehaviour {
         switch (currentHealth) { 
             case 0:
                 //游戏结束
+                PlaySound._instance.PauseBg();
+                PlaySound._instance.PlayOver();
                 hearts[0].SetActive(false);
                 playerSpawner.SetActive(true);
                 gameOver = true;
