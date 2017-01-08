@@ -41,6 +41,7 @@ public class GameController : MonoBehaviour {
     void Start()
     {
         ResetWall();
+        HideHealth();
        // InitGame();
 
     }
@@ -70,14 +71,23 @@ public class GameController : MonoBehaviour {
         PlayerSpawner._instance.Spawn();
     }
 
+    void HideHealth() {
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            hearts[i].SetActive(false);
+        }
+    
+    }
+
    public void InitGame() {
 
         currentHealth = maxHealth;
         score = 0;
         gameOver = false;
         damaged = false;
+        playerSpawner.SetActive(false);
         UpdateScore();
-        PlayerSpawner._instance.DestroyAllObj();
+     //   PlayerSpawner._instance.DestroyAllObj();
         PlaySound._instance.PlayBg();
 
         for (int i = 0; i < hearts.Length; i++) {

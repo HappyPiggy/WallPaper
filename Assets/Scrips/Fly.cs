@@ -55,6 +55,7 @@ public class Fly : MonoBehaviour {
         isFly = true;
         Invoke("TakeDown",1.5f);
 
+        PlaySound._instance.PlayRocket();
       //  Vector2 velocity = gameObject.GetComponent<Rigidbody2D>().velocity;
       //  float xVelocity = 0;
       //  float yVelocity = 0;

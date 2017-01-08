@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scrips\BasketBall.cs" />
      <Compile Include="Assets\Scrips\Boom.cs" />
      <Compile Include="Assets\Scrips\Comment.cs" />
      <Compile Include="Assets\Scrips\DestoryByTime.cs" />

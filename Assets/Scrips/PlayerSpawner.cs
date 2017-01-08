@@ -35,8 +35,10 @@ public class PlayerSpawner : MonoBehaviour {
        // print(clickSource);
         PlaySound._instance.PlayerClick();
         
-        GameController._instance.playerSpawner.SetActive(false);
+      //  GameController._instance.playerSpawner.SetActive(false);
         GameController._instance.InitGame();
+
+        DestroyAllObj();
 
         //生成主角球
         GameObject mainPlayer = Instantiate(mainBall, startPos.position, startPos.rotation) as GameObject;
@@ -91,8 +93,9 @@ public class PlayerSpawner : MonoBehaviour {
         for (int i = 0; i < allObj.Count; i++) {
            // print(allObj[i]);
             Destroy(allObj[i]);
+           
         }
-    
-    
+
+          allObj.Clear();
     }
 }

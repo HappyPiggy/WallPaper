@@ -12,12 +12,6 @@ public class Comment : MonoBehaviour {
     private Vector3 largeScale;
     private Vector3 normalScale;
 
-    private Vector3 _vec3TargetScreenSpace;// 目标物体的屏幕空间坐标  
-    private Vector3 _vec3TargetWorldSpace;// 目标物体的世界空间坐标  
-    private Transform _trans;// 目标物体的空间变换组件  
-    private Vector3 _vec3MouseScreenSpace;// 鼠标的屏幕空间坐标  
-    private Vector3 _vec3Offset;// 偏移  
-
 
     void Start() {
 
@@ -33,11 +27,16 @@ public class Comment : MonoBehaviour {
 
         if (!isSaying) {
 
-            if (gameObject.CompareTag("angry"))
+
+            if (transform.CompareTag("angry"))
             {
                 gameObject.transform.localScale = largeScale;
+                PlaySound._instance.PlayAngry();
             }
-
+            else {
+                PlaySound._instance.PlayFunny();
+            }
+            
             index = Random.Range(0, comments.Length);
             comments[index].SetActive(true);
             Invoke("ActiveFalse", lastTime);
